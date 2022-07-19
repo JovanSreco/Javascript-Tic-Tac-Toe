@@ -1,0 +1,173 @@
+/* Base variables, resets and font-family */
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@600&family=Lato:wght@300&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: rgb(15, 78, 99);
+    --x-color: rgb(247, 116, 49);
+    --x-transperent-color: rgba(247, 116, 49, 0.3);
+    --circle-color: rgb(190, 215, 83);
+    --circle-transparent-color: rgb(190, 215, 83, 0.3);
+    --border-color: 1px solid rgb(233, 233, 233);
+    --btn-color: rgb(241 196 15);
+    --margin-bottom: 1rem;
+}
+
+html {
+    font-size: 62.5%;   
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Edu NSW ACT Foundation', cursive;
+}
+
+/* Base styling for the game */
+.section-game {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}   
+
+.game-name {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    margin-bottom: var(--margin-bottom);
+    color: white;
+}
+
+.board {
+    width: 36rem;
+    height: 36rem;
+    margin-bottom: var(--margin-bottom);
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board__cell {
+    border-top: var(--border-color);
+    border-left: var(--border-color);
+    position: relative;
+    cursor: pointer;
+}
+
+.board__cell:nth-child(3n + 3) {
+    border-right: var(--border-color);
+}
+
+.board__cell:nth-child(7),
+.board__cell:nth-child(8),
+.board__cell:nth-child(9) {
+    border-bottom: var(--border-color);;
+}
+
+/* X shape and logic when hovering over empty spaces */
+.board__cell--x::before, 
+.board__cell--x::after,
+.board.x-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::after,
+.board.x-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg) skewY(-45deg);
+    height: 60%;
+    width: 1.1rem;
+    background-color: var(--x-color);
+}
+
+.board__cell--x::before,
+.board.x-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::before {
+    transform: translate(-50%, -50%) rotate(-45deg) skewY(45deg);
+}
+
+.board.x-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::after,
+.board.x-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::before {
+    background-color: var(--x-transperent-color)
+}
+
+/* Circle shape logic when hovering over empty spaces */
+
+.board__cell--circle::before, 
+.board__cell--circle::after,
+.board.circle-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::after,
+.board.circle-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::before  {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 55%;
+    width: 55%;
+    border-radius: 100%;
+    background-color: var(--circle-color);
+}
+
+.board__cell--circle::after,
+.board.circle-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::after {
+    background-color: var(--bg-color);
+    width: 40%;
+    height: 40%;
+}
+
+.board.circle-turn .board__cell:not(.board__cell--x):not(.board__cell--circle):hover::before {
+    background-color: var(--circle-transparent-color);
+}
+
+/* Taken spaces not allowed to be marked */
+.board__cell.board__cell--x,
+.board__cell.board__cell--circle {
+    cursor: not-allowed;
+}
+
+.new-game {
+    width: 30rem;
+    text-align: center;
+}
+
+.new-game__text {
+    width: 100%;
+    font-size: 3rem;
+    letter-spacing: .5rem;
+    margin-bottom: var(--margin-bottom);
+    color: #fff;
+}
+
+.new-game__text.x-turn {
+    color: var(--x-color);
+}
+
+.new-game__text.circle-turn {
+    color: var(--circle-color)
+}
+
+.new-game__btn {
+    font-family: inherit;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--btn-color);
+    box-shadow: 0 1rem 2rem rgba(0,0,0, 0.2);
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.new-game__btn:hover {
+    box-shadow: 0 2rem 4rem rgba(0,0,0, 0.2);
+    transform: translateY(-.7rem);
+}

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="sricpt.js" defer></script>
-    <title>Tic Tac Toe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <title>Document</title>
 </head>
+
 <body>
-    
+  <section class="section-game">
+    <h1 class="game-name">Tic Tac Toe</h1>
+
+    <div class="board x-turn" data-board>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+      <div class="board__cell" data-cell></div>
+    </div>
+
+    <div class="new-game" data-new-game>
+      <p class="new-game__text" data-new-game-message></p>
+      <button class="new-game__btn" data-new-game-btn>New Game</button>
+    </div>
+  </section>
 </body>
+
 </html>
