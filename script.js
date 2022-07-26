@@ -1,3 +1,4 @@
+"use strict";
 const X_TURN = "x-turn"
 const CIRCLE_TURN = "circle-turn"
 const CELL_X = "board__cell--x"
